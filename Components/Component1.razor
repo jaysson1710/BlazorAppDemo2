@@ -1,0 +1,45 @@
+﻿
+
+@inject HttpClient http;
+@using BlazorAppDemo2.Servicio
+@using Newtonsoft.Json
+
+
+    <h3>Component1</h3>
+<button type="button" @onclick="@GetItems">Get Items!</button>
+
+
+<p>Informacion desde db:</p>
+<table>
+    <tr>
+        <th>Summary</th>
+        <th>Grade</th>
+    </tr>
+    @foreach (var item in weather)
+    {
+        <tr>
+        <td>@item.Summary</td>
+        <td>@item.Grade</td>
+        </tr>
+    }
+</table>
+
+<br />
+<div>
+    <p>Infromacion especfica</p>
+    <label >@selec.Summary</label>
+</div>
+
+
+@code{
+
+    private List<Weather> weather = new List<Weather>();
+
+    private Weather selec = new Weather();
+
+    private async void GetItems()
+    {
+        weather = await http.GetJsonAsync<List<Weather>>("WeatherForecast");
+    }
+
+}
