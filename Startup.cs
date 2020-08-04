@@ -35,7 +35,7 @@ namespace BlazorAppDemo2
             services.AddTransient(sp =>
             new HttpClient
             {
-                BaseAddress = new Uri(@"https://localhost:44354/")
+                BaseAddress = new Uri(@"http://10.1.0.8/")
             });
 
             services.AddCors(options =>
